@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/ql114514.github.io/echarts.js"></script>
+    <title>曲率QL的个人网页</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      a{
+        text-decoration:none;
+      }
+      a:hover{
+        text-decoration:underline;
+      }
+      .chart-container {
+        width: 80%;
+        max-width: 700px;
+        background: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      .container{
+        width:100%;
+        height:auto;
+      }
+      #echart{
+        min-height:600px;
+      }
+      input{
+        background-color:#000;
+        color:#fff;
+      }
+      button{
+        background-color:#000;
+        color:#fff;
+      }
+      button:hover{
+        text-decoration:underline;
+      }
+      .private-content1 {
+        display: none;
+      }
+      .private-content2 {
+        display: none;
+      }
+      .private-content3 {
+        display: none;
+      }
+    </style>
+  </head>
+  <body style="background-color:#111;">
+    <header style="
+    align-items: center;
+    background-color:#000;
+    padding:15px;
+    font-size:15px;
+    color:#fff;
+    ">
+      <img src="https://i.imgs.ovh/2026/01/02/CiWEVL.png" alt="QL" width="100px" height="100px">
+      <h2 style="
+      text-align:left;
+      position:absolute;
+      top:30px;
+      left:120px;
+      ">曲率QL的个人网页</h2>
+      <nav style="
+      text-align:right;
+      font-size:25px;
+      position:absolute;
+      top:-10px;
+      right:15px;
+      ">
+        <p><strong>v3.2<br>第23版<br>982 Line</strong></p>
+      </nav>
+    </header>
+  <div class="terminal-container" id="appRoot" style="
+        background-color:#000;
+        margin:30px;
+        text-align:center;
+        padding:15px;
+        color:#fff;
+        font-size:20px;
+        border-radius:15px;">
+      <!-- 第一层 -->
+      <div class="login-box" id="layer1Box">
+          <label>PASSWORD LEVEL 1</label><br>
+          <input type="password" id="passwordInput1" placeholder="1st Password" autocomplete="off">
+          <div class="error-tip" id="errorTip1">密码错误</div><br>
+          <button onclick="checkPassword(1)">验证</button>
+      </div>
+      <div class="private-content" id="privateContent1">
+          <div class="success-badge">第一层密码验证问题通过 → 权限提升</div>
+          <!-- 第二层 -->
+          <div class="login-box">
+              <label>PASSWORD LEVEL 2</label><br>
+              <input type="password" id="passwordInput2" placeholder="2nd Password" autocomplete="off">
+              <div class="error-tip" id="errorTip2">密码错误</div><br>
+              <button onclick="checkPassword(2)">验证</button>
+          </div>
+          <div class="private-content" id="privateContent2">
+              <div class="success-badge">第二层密码验证问题通过 → 核心授权</div>
+              <!-- 第三层 -->
+              <div class="login-box">
+                  <label>PASSWORD LEVEL 3</label><br>
+                  <input type="password" id="passwordInput3" placeholder="3rd Password" autocomplete="off">
+                  <div class="error-tip" id="errorTip3">密码错误</div><br>
+                  <button onclick="checkPassword(3)">验证</button>
+              </div>
+              <div class="private-content" id="privateContent3">
+                  <div class="success-badge">第三层密码验证问题通过 → 进入内核区</div>
+                  <!-- 第四层 -->
+                  <div class="login-box">
+                      <label>PASSWORD LEVEL 4</label><br>
+                      <input type="password" id="passwordInput4" placeholder="4th Password" autocomplete="off">
+                      <div class="error-tip" id="errorTip4">密码错误</div><br>
+                      <button onclick="checkPassword(4)">验证</button>
+                  </div>
+                  <div class="private-content" id="privateContent4">
+                      <div class="success-badge">第四层 · 基因锁初步吻合</div>
+                      <!-- 第五层 -->
+                      <div class="login-box">
+                          <label>PASSWORD LEVEL 5</label><br>
+                          <input type="password" id="passwordInput5" placeholder="5th Password" autocomplete="off">
+                          <div class="error-tip" id="errorTip5">密码错误</div><br>
+                          <button onclick="checkPassword(5)">验证</button>
+                      </div>
+                      <div class="private-content" id="privateContent5">
+                          <div class="success-badge">第五层 · 记忆碎片匹配成功</div>
+                          <!-- 第六层 -->
+                          <div class="login-box">
+                              <label>PASSWORD LEVEL 6</label><br>
+                              <input type="password" id="passwordInput6" placeholder="6th Password" autocomplete="off">
+                              <div class="error-tip" id="errorTip6">密码错误</div><br>
+                              <button onclick="checkPassword(6)">验证</button>
+                          </div>
+                          <div class="private-content" id="privateContent6">
+                              <div class="success-badge">第六层 · 量子密匙吻合</div>
+                              <!-- 第七层 -->
+                              <div class="login-box">
+                                  <label>PASSWORD LEVEL 7</label><br>
+                                  <input type="password" id="passwordInput7" placeholder="7th Password" autocomplete="off">
+                                  <div class="error-tip" id="errorTip7">密码错误</div><br>
+                                  <button onclick="checkPassword(7)">验证</button>
+                              </div>
+                              <div class="private-content" id="privateContent7">
+                                  <div class="success-badge">第七层 · 灵魂协议确认</div>
+                                  <!-- 第八层 -->
+                                  <div class="login-box">
+                                      <label>PASSWORD LEVEL 8</label><br>
+                                      <input type="password" id="passwordInput8" placeholder="8th Password" autocomplete="off">
+                                      <div class="error-tip" id="errorTip8">密码错误</div><br>
+                                      <button onclick="checkPassword(8)">验证</button>
+                                  </div>
+                                  <div class="private-content" id="privateContent8">
+                                      <div class="success-badge">第八层 · 时间戳验证通过</div>
+                                      <!-- 第九层 -->
+                                      <div class="login-box">
+                                          <label>PASSWORD LEVEL 9</label><br>
+                                          <input type="password" id="passwordInput9" placeholder="9th Password" autocomplete="off">
+                                          <div class="error-tip" id="errorTip9">密码错误</div><br>
+                                          <button onclick="checkPassword(9)">验证</button>
+                                      </div>
+                                      <div class="private-content" id="privateContent9">
+                                          <div class="success-badge">第九层 · 异次元锚点激活</div>
+                                          <!-- 第十层 最终大关 -->
+                                          <div class="login-box">
+                                              <label>PASSWORD LEVEL 10 — 最终权限</label><br>
+                                              <input type="password" id="passwordInput10" placeholder="10th Password · 终极密令" autocomplete="off">
+                                              <div class="error-tip" id="errorTip10">密码错误 · 拒绝访问</div><br>
+                                              <button onclick="checkPassword(10)">终极验证</button>
+                                          </div>
+                                          <div class="private-content" id="privateContent10">
+                                              <main>
+                                                  <section class="Main" style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  text-align:center;
+                                                  padding:15px;
+                                                  color:#fff;
+                                                  font-size:20px;
+                                                  border-radius:15px;
+                                                  ">
+                                                    <h1 style="
+                                                    background-color:#000;
+                                                    margin:30px;
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:40px;
+                                                    ">主页</h1>
+                                                    <h2><strong>关于我</strong></h2>
+                                                    <h3><strong>个人简介</strong></h3>
+                                                    <p>术力口厨 | 二次元 | 我的世界7年老玩家 | SCP | 超炮 | 音游<br />
+                                                    <p>我的网名叫做曲率QL<br />
+                                                    Minecraft/代码萌新<br />
+                                                    关于这个名字，起源于四年级时起了个名字<br />
+                                                    后来觉得太尴尬了，就起了个很装的英文名<br />
+                                                    <!--Maugfy-->
+                                                    到五年级的时候，又改成了Rainbow<br />
+                                                    到六年级，又改成了曲率</p>
+                                                    <h4>推：初音miku、重音teto、夜步及、御坂美琴</h4>
+                                                    <p></p>
+                                                    <h3><strong>联系方式</strong></h3>
+                                                    <p>QQ:1241469177 & 3803412851</p>
+                                                    <p>VX:X19108481086</p>
+                                                    <h3>我的账号</h3>
+                                                    <a style="
+                                                    background-color:#000;
+                                                    margin:30px;
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://space.bilibili.com/3546832162523212">B站账号</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px;
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://luogu.com.cn/user/2044255">洛谷账号</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://music.163.com/#/user/home?id=10003989098">网易云账号</a><br>
+                                                    <a style="
+                                                    background-color:#000000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#ffffff;
+                                                    font-size:30px;"
+                                                    href="https://www.bilibili.com/bangumi/play/ep84340">某科学的超电磁炮</a>
+                                                    <p></p>
+                                                  </section>
+                                                  <section class="Music" style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  text-align:center;
+                                                  padding:15px;
+                                                  color:#fff;
+                                                  font-size:20px;
+                                                  border-radius:15px;
+                                                  ">
+                                                    <h1>来听歌吧</h1>
+                                                    <iframe frameborder="no"
+                                                    marginwidth="0"
+                                                    marginheight="0"
+                                                    width="675"
+                                                    height="450"
+                                                    src="https://music.163.com/outchain/player?type=0&amp;id=17707539616&amp;auto=0&amp;height=450">
+                                                    </iframe>
+                                                    <iframe frameborder="no"
+                                                    marginwidth="0"
+                                                    marginheight="0"
+                                                    width="675"
+                                                    height="450"
+                                                    src="https://music.163.com/outchain/player?type=0&amp;id=17707539398&amp;auto=0&amp;height=450">
+                                                    </iframe>
+                                                  </section>
+                                                  <section class="Link" style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  text-align:center;
+                                                  padding:15px;
+                                                  color:#fff;
+                                                  font-size:20px;
+                                                  border-radius:15px;
+                                                  ">
+                                                    <h2><strong>其他</strong></h2>
+                                                    <br><a style="
+                                                    background-color:#000000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#ffffff;
+                                                    font-size:20px;"
+                                                    href="https://space.bilibili.com/3546968097818827">同学B站账号</a>
+                                                    <h3><strong>好玩的链接</strong></h3>
+                                                    <h4>Wiki</h4>
+                                                    <a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://zh.minecraft.wiki">我的世界官方维基</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://scp-wiki-cn.wikidot.com">SCP中文维基</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://backrooms-wiki-cn.wikidot.com">后室中文维基</a>
+                                                    <h4>一些官网</h4>
+                                                    <a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://kasaneteto.jp">重音テト官网</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://piapro.net">Piapro官网</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://voicemith.com">VOICEMITH官网</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://minecraft.net">我的世界官网</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://srpn.top">星球阁官网</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://qhlg.flime.top">乾狐之家</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://danieltoyama.fun">户山兔兔の小家</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://rthmiho.top">猫雨音の小猫窝</a>
+                                                    <h4>杂物</h4>
+                                                    <a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://api.lolimi.cn/60">每日60秒（新闻）</a>
+                                                    <br><a style="
+                                                    background-color:#00;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://gityx.com">git游戏</a>
+                                                    <br><a style="
+                                                    background-color:#000;
+                                                    margin:30px；
+                                                    text-align:center;
+                                                    color:#fff;
+                                                    font-size:20px;"
+                                                    href="https://play.mc.js.cool/1.8">我的世界1.8</a>
+                                                    <p></p>
+                                                  </section>
+                                                  <section class="Tips" style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  text-align:center;
+                                                  padding:15px;
+                                                  color:#fff;
+                                                  font-size:20px;
+                                                  border-radius:15px;
+                                                  ">
+                                                    <h2>心理委员温馨提示</h2>
+                                                    <p>1.不准从28楼肘击水泥地<br />
+                                                    2.不可以去天台看看自己有没有隐形的翅膀<br />
+                                                    3.脖子不能跟房梁来场酣畅淋漓的拔河比赛<br />
+                                                    4.请不要用手腕跟刀片比硬度<br />
+                                                    5.也不要去野湖练习憋气<br />
+                                                    6.不能躲在国道旁等大货车出来的时候吓他一跳<br />
+                                                    7.禁止和高铁比谁力气大<br />
+                                                    8.拒绝喝确保庄稼正常生长的小饮料<br />
+                                                    9.不要去和鱼比肺活量<br />
+                                                    10.禁止cos晴天娃娃<br />
+                                                    11.禁止在煮饭过程中点燃室内<br />
+                                                    <strong>12.以上不是任务清单</strong></p>
+                                                  </section>
+                                                  <section class="Railgun" style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  padding:15px;
+                                                  width:100%-10px;
+                                                  height:320px;
+                                                  color:#fff;
+                                                  font-size:20px;
+                                                  position: relative;
+                                                  overflow: hidden;
+                                                  border-radius:15px;
+                                                  ">
+                                                    <img style="
+                                                    position:absolute;
+                                                    width:100px;
+                                                    top: 50%;
+                                                    left: 25%;
+                                                    transform: translateY(-50%);
+                                                    object-fit: cover;
+                                                    " src="https://i.imgs.ovh/2026/01/26/yec6Yp.png" alt="y8mVMd.png" border="0">
+                                                    <div style="
+                                                    position: relative;
+                                                    left:35%;
+                                                    ">
+                                                      <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;
+                                                        border:1px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84340">01</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84341">02</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84342">03</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84343">04</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84344">05</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84345">06</a><br><br><br>
+                                                      <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;
+                                                        border:1px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84346">07</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84347">08</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84348">09</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84349">10</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84350">11</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84351">12</a><br><br><br>
+                                                      <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;
+                                                        border:1px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84352">13</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84353">14</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84354">15</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84355">16</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84356">17</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84357">18</a><br><br><br>
+                                                      <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;
+                                                        border:1px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84358">19</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84359">20</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84360">21</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84361">22</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84362">23</a>
+                                                        <a style="
+                                                        background-color:#000000;
+                                                        margin:30px;
+                                                        text-align:center;
+                                                        color:#fff;
+                                                        font-size:30px;"
+                                                        href="https://www.bilibili.com/bangumi/play/ep84363">24</a>
+                                                    </div>
+                                                  </section>
+                                                  <section class="Update" style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  text-align:center;
+                                                  padding:15px;
+                                                  color:#fff;
+                                                  font-size:20px;
+                                                  border-radius:15px;
+                                                  ">
+                                                  <h1 style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  text-align:center;
+                                                  color:#fff;
+                                                  font-size:40px;
+                                                  ">更新日志</h1>
+                                                    <h3>1.0</h3>
+                                                    <p>2026.3.23<br>初版<br>3.67KB</p>
+
+                                                  </section>
+                                                  <section class="Chart" style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  text-align:center;
+                                                  padding:15px;
+                                                  color:#fff;
+                                                  font-size:20px;
+                                                  border-radius:15px;
+                                                  ">
+                                                    <div id="main" style="width: 80%; height: 400px; margin: 0 auto;"></div>
+                                                    <script type="text/javascript">
+                                                      document.addEventListener('DOMContentLoaded', function() {
+                                                        var chartDom = document.getElementById('main');
+                                                        var myChart = echarts.init(chartDom);
+                                                        var option = {
+                                                          title: {
+                                                            textStyle: { color: '#fff', fontSize: 24 }
+                                                          },
+                                                          tooltip: {
+                                                            trigger: 'axis',
+                                                            textStyle: { color: '#000' }
+                                                          },
+                                                          xAxis: {
+                                                            type: 'category',
+                                                            data: ["1.0","1.1","1.2","1.3","1.4",
+                                                                   "1.5","1.6","1.7","1.8","1.9",
+                                                                   "2.0","2.1","2.2","2.3","2.4",
+                                                                   "2.5","2.6","2.7","2.8","2.9",
+                                                                   "3.0","3.1","3.2"],
+                                                            axisLabel: { color: '#fff', fontSize: 14 },
+                                                            axisLine: { lineStyle: { color: '#fff' } },
+                                                            splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
+                                                          },
+                                                          yAxis: {
+                                                            type: 'value',
+                                                            name: 'Size (KB)',
+                                                            nameTextStyle: { color: '#fff' },
+                                                            axisLabel: { color: '#fff', fontSize: 14 },
+                                                            axisLine: { lineStyle: { color: '#fff' } },
+                                                            splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
+                                                          },
+                                                          series: [
+                                                            {
+                                                              name: '文件大小',
+                                                              data: [3.67,3.67,3.66,3.62,3.63,
+                                                                     4.18,4.30,4.40,4.57,4.86,
+                                                                     6.76,10.6,11.2,15.3,20.6,
+                                                                     21.5,23.6,26.6,28.6,29.4,
+                                                                     35.3,41.1,42.8],
+                                                              type: 'line',
+                                                              smooth: true,
+                                                              lineStyle: { color: '#fff', width: 1 },
+                                                              itemStyle: { color: '#fff' },
+                                                            }
+                                                          ],
+                                                          backgroundColor: 'transparent'
+                                                        };
+                                                        myChart.setOption(option);
+                                                        window.addEventListener('resize', function() {
+                                                          myChart.resize();
+                                                        });
+                                                      });
+                                                    </script>
+                                                  </section>
+                                                  <div class="Locked" style="
+                                                  background-color:#000;
+                                                  margin:30px;
+                                                  text-align:center;
+                                                  padding:15px;
+                                                  color:#fff;
+                                                  font-size:20px;
+                                                  border-radius:15px;
+                                                  ">
+                                                        <div style="
+                                                        padding:20px;
+                                                        ">
+                                                          <div style="
+                                                          text-align:center;
+                                                          border: 1px solid #fff;
+                                                          width: 100vh-120px;
+                                                          ">
+                                                            <h2>神秘关系表</h2>
+                                                            <div style="
+                                                            text-align:center;
+                                                            border: 1px solid #fff;
+                                                            width: 100vh-120px;
+                                                            ">
+                                                              <h3>筑梦</h3>
+                                                              <p>性别：女</p>
+                                                              <p>年龄：13</p>
+                                                              <h4>关系：</h4>
+                                                              <p>死党：晓彤</p>
+                                                            </div>
+                                                            <div style="
+                                                            text-align:center;
+                                                            border: 1px solid #fff;
+                                                            width: 100vh-120px;
+                                                            ">
+                                                              <h3>晓彤</h3>
+                                                              <p>性别：女</p>
+                                                              <p>年龄：13</p>
+                                                              <h4>关系：</h4>
+                                                              <p>闺蜜：康仑</p>
+                                                              <p>死党：筑梦</p>
+                                                            </div>
+                                                            <div style="
+                                                            text-align:center;
+                                                            border: 1px solid #fff;
+                                                            width: 100vh-120px;
+                                                            ">
+                                                              <h3>康仑</h3>
+                                                              <p>性别：女</p>
+                                                              <p>年龄：13</p>
+                                                              <h4>关系：</h4>
+                                                              <p>闺蜜：晓彤</p>
+                                                            </div>
+                                                            <div style="
+                                                            text-align:center;
+                                                            border: 1px solid #fff;
+                                                            width: 100vh-120px;
+                                                            ">
+                                                              <h3>朱月</h3>
+                                                              <p>性别：男</p>
+                                                              <p>年龄：13</p>
+                                                              <h4>关系：</h4>
+                                                              <p>恋人：梅茨</p>
+                                                            </div>
+                                                            <div style="
+                                                            text-align:center;
+                                                            border: 1px solid #fff;
+                                                            width: 100vh-120px;
+                                                            ">
+                                                              <h3>梅茨</h3>
+                                                              <p>性别：女</p>
+                                                              <p>年龄：13</p>
+                                                              <h4>关系：</h4>
+                                                              <p>恋人：朱月</p>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="
+                                                        text-align:center;
+                                                        border: 1px solid #fff;
+                                                        width: 100vh-120px;
+                                                        ">
+                                                          <h2>班上同学Belike：</h2>
+                                                          <blockquote>
+                                                            满脑子的黄色废料<br>
+                                                            捡一个烂梗你当成宝<br>
+                                                            一张嘴用来胡说八道<br>
+                                                            你这种人根本没有存在必要
+                                                          </blockquote>
+                                                        </div>
+                                                  </div>
+                                                </main>
+                                              <button class="exit-btn" onclick="resetAllLayers()">🚪 退出 / 重置所有权限</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- 全局脚本定义密码映射 & 动态生成逻辑统一管理 -->
+      <script>
+          // ---------- 十重密码定义 (按层索引 1~10) ----------
+          const PASSWORDS = {
+              1: "kT5f",
+              2: "Maugfy",
+              3: "Rainbow",
+              4: "PhigrOS",
+              5: "KasaneTeto",
+              6: "HatsuneMiku",
+              7: "Mikoto Misaka‌",
+              8: "Saturn System",
+              9: "Miku Miku oo ee oo",
+              10: "ZXC741ASD852QWE963'"
+          };
+
+          // 辅助: 获取各层元素
+          function getLayerElements(layer) {
+              const input = document.getElementById(`passwordInput${layer}`);
+              const errorTip = document.getElementById(`errorTip${layer}`);
+              const privateContent = document.getElementById(`privateContent${layer}`);
+              return { input, errorTip, privateContent };
+          }
+
+          // 统一验证函数 (支持1-10)
+          window.checkPassword = function(layer) {
+              if (layer < 1 || layer > 10) return;
+              const { input, errorTip, privateContent } = getLayerElements(layer);
+              if (!input || !errorTip || !privateContent) return;
+
+              const inputPassword = input.value.trim();
+              const correct = PASSWORDS[layer];
+              if (!inputPassword) {
+                  errorTip.textContent = '密码不可为空';
+                  errorTip.style.display = 'block';
+                  input.focus();
+                  return;
+              }
+              if (inputPassword === correct) {
+                  errorTip.style.display = 'none';
+                  privateContent.style.display = 'block';
+                  // 自动将焦点移到下一层输入框（如果下一层存在且可见）
+                  const nextLayer = layer + 1;
+                  if (nextLayer <= 10) {
+                      const nextInput = document.getElementById(`passwordInput${nextLayer}`);
+                      if (nextInput && nextInput.offsetParent !== null) {
+                          // 延迟聚焦，让动画平稳
+                          setTimeout(() => nextInput.focus(), 80);
+                      }
+                  } else {
+                      // 第十层成功后可选聚焦退出按钮，但无需
+                      const exitBtn = document.querySelector('.exit-btn');
+                      if(exitBtn) exitBtn.focus();
+                  }
+              } else {
+                  errorTip.textContent = '密码错误 · 拒绝访问';
+                  errorTip.style.display = 'block';
+                  input.value = '';
+                  input.focus();
+                  // 震动小提示效果（可选）
+                  input.style.transform = 'shake 0.1s';
+                  setTimeout(() => { if(input) input.style.transform = ''; }, 200);
+              }
+          };
+
+          // 为所有层添加回车事件
+          function bindEnterForLayer(layer) {
+              const input = document.getElementById(`passwordInput${layer}`);
+              if (!input) return;
+              const handler = (e) => {
+                  if (e.key === 'Enter') {
+                      e.preventDefault();
+                      checkPassword(layer);
+                  }
+              };
+              input.removeEventListener('keydown', handler);
+              input.addEventListener('keydown', handler);
+          }
+
+          // 重置所有层: 隐藏所有private-content, 清空所有输入框, 重置错误样式, 显示第一层登录框外围
+          window.resetAllLayers = function() {
+              // 隐藏从1到10的所有 privateContent (且保证login-box可见)
+              for (let i = 1; i <= 10; i++) {
+                  const priv = document.getElementById(`privateContent${i}`);
+                  if (priv) priv.style.display = 'none';
+                  const err = document.getElementById(`errorTip${i}`);
+                  if (err) err.style.display = 'none';
+                  const inp = document.getElementById(`passwordInput${i}`);
+                  if (inp) {
+                      inp.value = '';
+                      inp.style.transform = '';
+                  }
+              }
+              // 额外确保第一层外部显示一切正常（最外层privateContent1隐藏时，第一层login-box自动可见）
+              // 但是需要确保层级嵌套不冲突，让整个界面回到最初只有第一层login-box可见的状态。
+              // 由于dom结构: privateContent1内部包含了2~10所有内容，若privateContent1隐藏则所有深层不可见，完美重置。
+              const firstPriv = document.getElementById('privateContent1');
+              if(firstPriv) firstPriv.style.display = 'none';
+              // 确保第一层的输入框启用和错误清除
+              const firstInput = document.getElementById('passwordInput1');
+              if(firstInput) {
+                  firstInput.value = '';
+                  firstInput.focus();
+              }
+              const err1 = document.getElementById('errorTip1');
+              if(err1) err1.style.display = 'none';
+
+              // 额外清除所有内层错误显示，防止残留
+              for(let i=2;i<=10;i++){
+                  const innerErr = document.getElementById(`errorTip${i}`);
+                  if(innerErr) innerErr.style.display = 'none';
+                  const innerInput = document.getElementById(`passwordInput${i}`);
+                  if(innerInput) innerInput.value = '';
+              }
+              // 通知用户重置成功（控制台友好）
+              console.log("十重封印已重置，回归初始状态");
+          };
+
+          // 初始化所有输入框绑定回车，并且给所有按钮额外增加稳健性。且确保初始状态所有深层内容隐藏。
+          function initSystem() {
+              for (let i = 1; i <= 10; i++) {
+                  bindEnterForLayer(i);
+                  // 确保初始所有privateContent隐藏 (但privateContent1默认隐藏后面的都隐藏)
+                  const priv = document.getElementById(`privateContent${i}`);
+                  if (priv && i !== 1) {
+                      // 由于嵌套css，初始时 privateContent1隐藏，其他内部的private由于父级隐藏也会隐藏，但避免样式闪烁直接设置隐藏
+                      priv.style.display = 'none';
+                  }
+              }
+              // 第一层private初始隐藏，第一层框可见，清除错误
+              const priv1 = document.getElementById('privateContent1');
+              if(priv1) priv1.style.display = 'none';
+              const err1 = document.getElementById('errorTip1');
+              if(err1) err1.style.display = 'none';
+              const input1 = document.getElementById('passwordInput1');
+              if(input1) input1.value = '';
+              // 可选设置全局退出时重置也可
+              const exitBtn = document.querySelector('.exit-btn');
+              // 如果存在退出按钮额外重置，但是第十层内部已有resetAllLayers
+          }
+          // 添加额外隐藏彩蛋: 如果某个用户输入提示，但保留核心十重结构
+          window.addEventListener('DOMContentLoaded', () => {
+              initSystem();
+              // 额外为第十层增加特殊炫光提醒
+              const finalPrivate = document.getElementById('privateContent10');
+              if(finalPrivate){
+                  // 确保第十层内部退出按钮事件已经绑定resetAllLayers, 已全局可用
+              }
+              // 可选显示欢迎
+              console.log("十重密码门禁系统已激活 | 密码提示隐藏于虚空");
+          });
+
+          // 确保某些全局函数兼容旧有名称但是无冲突
+          window.hidePrivateContent = function() {
+              // 保持对外兼容, 但新版重置更完善
+              resetAllLayers();
+          };
+
+          // 对于原有旧版调用的可能性，添加兼容但不影响主逻辑
+          // 完全满足十重密码设计，且各层独立嵌套逐级展示
+      </script>
+  </div>
+    <footer style="
+      background-color:#000;
+      padding:15px;
+      font-size:25px;
+      color:#fff;
+      text-align:center;
+      ">
+      <p>by 曲率QL</p>
+    </footer>
+  </body>
+</html>
